@@ -7,10 +7,6 @@ export default defineNuxtConfig({
     alias: {
         "@": resolve(`${__dirname}/client`, ""),
     },
-    target: 'static',
-    router: {
-        base: '/tma-client/'
-    },
     ssr: false,
     devServer: {
             host: "172.17.32.1",

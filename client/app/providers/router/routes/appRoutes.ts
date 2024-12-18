@@ -12,4 +12,5 @@ export const appRoutes = [
       middleware: ["auth"],
     },
   },
+    
 ];
