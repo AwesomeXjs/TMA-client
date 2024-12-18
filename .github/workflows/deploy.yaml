@@ -23,7 +23,7 @@ jobs:
 
       # Шаг 3: Установка зависимостей
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       # Шаг 4: Сборка приложения
       - name: Build and generate static site
