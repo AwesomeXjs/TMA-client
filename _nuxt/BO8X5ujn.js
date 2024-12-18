@@ -1,1 +1,0 @@
-import{n,o,q as _,w as a,s as p,b as s,u as c}from"./DCx7jsyN.js";import{u}from"./C4bjBgwH.js";const l=n({__name:"index",setup(r){return tgWebApp=u(),tgWebApp.init(),(m,i)=>{const t=c,e=p;return o(),_(e,null,{default:a(()=>[s(t)]),_:1})}}});export{l as default};
