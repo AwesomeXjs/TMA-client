@@ -7,9 +7,9 @@ export default defineNuxtConfig({
     alias: {
         "@": resolve(`${__dirname}/client`, ""),
     },
-    target: 'static', // Включает режим статической генерации
+    target: 'static',
     router: {
-        base: '/REPOSITORY_NAME/' // Замените на имя вашего репозитория
+        base: '/tma-client/'
     },
     ssr: false,
     devServer: {
