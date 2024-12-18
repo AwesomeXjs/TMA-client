@@ -7,11 +7,13 @@ export default defineNuxtConfig({
     alias: {
         "@": resolve(`${__dirname}/client`, ""),
     },
+
     ssr: false,
     devServer: {
             host: "172.17.32.1",
     },
     app: {
+        baseURL: '/tma-client/',
         head: {
             script: [
                 {
