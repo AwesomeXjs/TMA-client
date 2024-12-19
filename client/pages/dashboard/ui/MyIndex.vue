@@ -20,14 +20,13 @@ const tryValidate = async () => {
   queryParams.delete('hash')
   queryParams.sort()
 
-  console.log(queryParams)
-
-
   let dataCheckingString = "";
   for (const [key, value] of queryParams.entries()) {
-    dataCheckingString += `${key}=${value}`
+    dataCheckingString += `${key}=${value}\n`
   }
+  
   dataCheckingString = dataCheckingString.slice(0, -1)
+  console.log(dataCheckingString)
   let dataUrl = [dataCheckingString, hash]
 
   try {
