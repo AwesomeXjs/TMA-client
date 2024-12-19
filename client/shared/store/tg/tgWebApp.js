@@ -9,12 +9,14 @@ const storeName = 'tgWebApp'
 export const useWebTgApp = defineStore(storeName, () => {
     const webAppData = ref(null)
     const dataUnsafe = ref(null)
+    const dataSafe = ref(null)
 
 
     const init = () => {
         webAppData.value = useWebApp()
         if (webAppData.value.version > '6.0') {
             initDataUnsafe()
+            initDataSave()
         }
     }
 
@@ -29,10 +31,22 @@ export const useWebTgApp = defineStore(storeName, () => {
         })
     }
 
+    const initDataSave = () => {
+        window.Telegram.WebApp.CloudStorage.getItem('initDataSave', (_, data) => {
+            if (typeof data === 'string' && data === '') {
+                dataSafe.value = useWebApp().initData
+                useWebAppCloudStorage().setStorageItem('initDataSave', JSON.stringify(dataSafe.value))
+            } else {
+                dataSafe.value = data
+            }
+        })
+    }
+
     return {
         webAppData,
         dataUnsafe,
         init,
+        dataSafe
 
     }
 })

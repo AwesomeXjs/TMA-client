@@ -14,10 +14,27 @@ tgWebApp.init()
 
 
 const tryValidate = async () => {
-  const queryParams = new URLSearchParams(tgWebApp.dataUnsafe).toString();
+  console.log(tgWebApp.dataSafe)
+  const queryParams = new URLSearchParams(tgWebApp.dataSafe);
+  const hash = queryParams.get('hash')
+  queryParams.delete('hash')
+  queryParams.sort()
+
+  console.log(queryParams)
+
+
+  let dataCheckingString = "";
+  for (const [key, value] of queryParams.entries()) {
+    dataCheckingString += `${key}=${value}`
+  }
+  dataCheckingString = dataCheckingString.slice(0, -1)
+  let dataUrl = [dataCheckingString, hash]
 
   try {
-    const response = await $fetch(`/api/v1/test-validate?${queryParams}`, {
+    const response = await $fetch(`/api/v1/test-validate`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(dataUrl),
       baseURL: 'http://127.0.0.1:8080',
     })
 
