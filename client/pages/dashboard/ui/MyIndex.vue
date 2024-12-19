@@ -1,18 +1,32 @@
 <script setup lang="js">
-
 import {useWebTgApp} from "@/shared/store";
+import {MainButton} from "vue-tg";
 
 const nuxtApp = useNuxtApp();
 
-
-
 // example composables
-const { sayExample } = useExample();
+const {sayExample} = useExample();
 sayExample();
+
+
 const tgWebApp = useWebTgApp()
+tgWebApp.init()
 
-  tgWebApp.init()
 
+const tryValidate = async () => {
+  try {
+    const hash = tgWebApp.dataUnsafe.hash
+    const response = await $fetch('/api/v1/test-validate', {
+      params: {hash},
+      baseURL: 'http://localhost:8080',
+    })
+
+    console.log("response: ", response)
+
+  } catch (error) {
+    console.log("error: ", error)
+  }
+}
 
 onMounted(() => {
   nuxtApp.$sayHello();
@@ -21,8 +35,14 @@ onMounted(() => {
 });
 </script>
 
+
 <template>
-  <h1>Hello Telegram mini app, my name is {{tgWebApp.first_name}}</h1>
+  <div v-if="tgWebApp.dataUnsafe">
+
+    <h1>Hello Telegram mini app, my name is {{ tgWebApp.dataUnsafe.user.first_name }}</h1>
+    <MainButton @click="tryValidate"/>
+  </div>
+  <!--  <ClosingConfirmation/>-->
 </template>
 
 <style scoped></style>

@@ -7,7 +7,6 @@ export default defineNuxtConfig({
     alias: {
         "@": resolve(`${__dirname}/client`, ""),
     },
-
     ssr: false,
     devServer: {
             host: "192.168.0.105",
