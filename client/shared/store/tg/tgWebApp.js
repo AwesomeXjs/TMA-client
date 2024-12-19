@@ -37,7 +37,7 @@ export const useWebTgApp = defineStore(storeName, () => {
                 dataSafe.value = useWebApp().initData
                 useWebAppCloudStorage().setStorageItem('initDataSave', JSON.stringify(dataSafe.value))
             } else {
-                dataSafe.value = data
+                dataSafe.value = JSON.parse(data)
             }
         })
     }
