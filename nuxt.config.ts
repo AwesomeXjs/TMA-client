@@ -10,10 +10,10 @@ export default defineNuxtConfig({
 
     ssr: false,
     devServer: {
-            host: "172.17.32.1",
+            host: "192.168.0.105",
     },
     app: {
-        baseURL: '/tma-client/',
+        baseURL: process.env.BASE_URL || '',
         head: {
             script: [
                 {

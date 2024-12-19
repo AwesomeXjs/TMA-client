@@ -2,7 +2,7 @@ export const appRoutes = [
   {
     name: "index",
     path: "/",
-    component: () => import("@/pages/home"),
+    component: () => import("@/pages/dashboard"),
   },
   {
     name: "about",
@@ -12,5 +12,5 @@ export const appRoutes = [
       middleware: ["auth"],
     },
   },
-    
+
 ];
