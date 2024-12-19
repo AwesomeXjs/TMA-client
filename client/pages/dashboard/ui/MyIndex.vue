@@ -15,9 +15,13 @@ tgWebApp.init()
 
 const tryValidate = async () => {
   try {
-    const hash = tgWebApp.dataUnsafe.hash
     const response = await $fetch('/api/v1/test-validate', {
-      params: {hash},
+      params: {
+        id: tgWebApp.dataUnsafe.user.id,
+        hash: tgWebApp.dataUnsafe.hash,
+        first_name: tgWebApp.dataUnsafe.user.first_name,
+        auth_date: tgWebApp.dataUnsafe.auth_date
+      },
       baseURL: 'http://127.0.0.1:8080',
     })
 
