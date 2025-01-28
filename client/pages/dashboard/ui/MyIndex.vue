@@ -31,7 +31,7 @@ const tryValidate = async () => {
   const authToken = btoa(unescape(encodeURIComponent(authData)));
 
   try {
-    const response = await $fetch(`/api/v1/test-validate`, {
+    const response = await $fetch(`/api/v1/create-portfolio`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ const tryValidate = async () => {
         "name": "Shit coins",
         "owner_id": 518774723
       }),
-      baseURL: 'http://127.0.0.1:8080/api/v1/create-portfolio',
+      baseURL: 'http://127.0.0.1:8080',
     });
 
     console.log("response: ", response);
