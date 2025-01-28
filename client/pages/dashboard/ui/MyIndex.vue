@@ -14,32 +14,37 @@ tgWebApp.init()
 
 
 const tryValidate = async () => {
-
   const queryParams = new URLSearchParams(tgWebApp.dataSafe);
   const hash = queryParams.get('hash');
   queryParams.delete('hash');
-  queryParams.sort()
+  queryParams.sort();
 
   let dataCheckingString = "";
   for (const [key, value] of queryParams.entries()) {
-    dataCheckingString += key+'='+value+'\n';
+    dataCheckingString += `${key}=${value}\n`;
   }
 
-  dataCheckingString = dataCheckingString.slice(0, -1)
-  let dataUrl = [dataCheckingString, hash]
+  dataCheckingString = dataCheckingString.slice(0, -1);
+
+  // Создаем токен для авторизации
+  const authData = `${dataCheckingString}:${hash}`;
+  const authToken = btoa(unescape(encodeURIComponent(authData)));
 
   try {
     const response = await $fetch(`/api/v1/test-validate`, {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(dataUrl),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `TGWebApp ${authToken}`
+      },
+      body: JSON.stringify({}), // Пустое тело, если необходимо
       baseURL: 'http://127.0.0.1:8080',
-    })
+    });
 
-    console.log("response: ", response)
+    console.log("response: ", response);
 
   } catch (error) {
-    console.log("error: ", error)
+    console.log("error: ", error);
   }
 }
 

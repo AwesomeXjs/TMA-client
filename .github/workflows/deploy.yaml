@@ -3,7 +3,10 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main # Деплой будет выполняться при пуше в ветку main
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build-and-deploy:
