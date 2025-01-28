@@ -27,7 +27,6 @@ const tryValidate = async () => {
 
   dataCheckingString = dataCheckingString.slice(0, -1)
   let dataUrl = [dataCheckingString, hash]
-  console.log(dataCheckingString)
 
   try {
     const response = await $fetch(`/api/v1/test-validate`, {
