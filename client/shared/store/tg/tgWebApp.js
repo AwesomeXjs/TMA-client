@@ -18,7 +18,6 @@ export const useWebTgApp = defineStore(storeName, () => {
         if (webAppData.value.version > '6.0') {
             initDataUnsafe()
             initDataSave()
-            setUserAuthToken()
         }
     }
 
@@ -68,7 +67,8 @@ export const useWebTgApp = defineStore(storeName, () => {
         dataUnsafe,
         init,
         dataSafe,
-        userAuthToken
+        userAuthToken,
+        setUserAuthToken,
 
     }
 })

@@ -14,28 +14,14 @@ tgWebApp.init()
 
 
 const tryValidate = async () => {
-
-  const authToken = tgWebApp.userAuthToken
-
-  try {
-    const response = await $fetch(`/api/v1/create-portfolio`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'TGWebAppToken': `TGWebApp ${authToken}`,
-      },
-      body: JSON.stringify({
-        "name": "Shit coins",
-        "owner_id": 518774723
-      }),
-      baseURL: 'http://127.0.0.1:8080',
-    });
-
-    console.log("response: ", response);
-
-  } catch (error) {
-    console.log("error: ", error);
+  if (tgWebApp.userAuthToken == null) {
+    tgWebApp.setUserAuthToken()
   }
+
+  await nuxtApp.$apiService.createPortfolio({
+    name: "test",
+    ownerID: tgWebApp.dataUnsafe.user.id
+  }, tgWebApp.userAuthToken)
 }
 
 onMounted(() => {
